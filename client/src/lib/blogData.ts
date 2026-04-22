@@ -29,7 +29,7 @@ export const blogPosts: BlogPost[] = [
 
 <h3>凌晨配送，准时送达</h3>
 <p>为了确保客户在营业前收到最新鲜的食材，我们的配送团队每天凌晨3点开始工作，根据客户的需求精准配送，确保食材在最佳状态下送达客户手中。</p>`,
-    image: "/manus-storage/blog-1_961dab7e.jpg",
+    image: "/manus-storage/blog-1_840003fa.jpg",
     category: "品质保障",
     date: "2026-04-15",
     author: "百慧农业",
@@ -53,7 +53,7 @@ export const blogPosts: BlogPost[] = [
 
 <h3>追溯体系：全程可追溯</h3>
 <p>我们建立了完善的食品安全追溯体系，每一批次的食材都有唯一的追溯码，可以追溯到具体的产地、生产者、采购时间、检测结果等信息，实现从田间到餐桌的全程可追溯。</p>`,
-    image: "/manus-storage/blog-2_ce4870c5.jpg",
+    image: "/manus-storage/blog-2_25771fb3.jpg",
     category: "食品安全",
     date: "2026-04-08",
     author: "百慧农业",
@@ -77,7 +77,7 @@ export const blogPosts: BlogPost[] = [
 
 <h3>物联网监控：全程可视</h3>
 <p>通过在冷链车辆和仓储设施中部署物联网传感器，我们可以实时监控食材的温度、湿度等关键指标，一旦出现异常，系统会立即预警，确保食材始终在最佳环境中储存和运输。</p>`,
-    image: "/manus-storage/blog-3_e28e5df8.jpg",
+    image: "/manus-storage/blog-3_1d1d8043.jpg",
     category: "行业洞察",
     date: "2026-03-25",
     author: "百慧农业",
@@ -98,7 +98,7 @@ export const blogPosts: BlogPost[] = [
 
 <h3>豌豆尖：清甜可口</h3>
 <p>豌豆尖是重庆人最爱的春季蔬菜之一，口感清甜嫩滑，富含维生素A和维生素C。简单清炒或者做汤，就能品尝到春天最纯粹的味道。</p>`,
-    image: "/manus-storage/cat-vegetables_1ca6edc3.jpg",
+    image: "/manus-storage/cat-vegetables_ee0f7f21.jpg",
     category: "健康饮食",
     date: "2026-03-18",
     author: "百慧农业",
@@ -122,7 +122,7 @@ export const blogPosts: BlogPost[] = [
 
 <h3>售后保障：无忧服务</h3>
 <p>我们建立了完善的售后服务体系，配备专属客户经理，及时响应客户的各种需求。如遇食材质量问题，我们承诺无条件退换，让客户采购无忧。</p>`,
-    image: "/manus-storage/about-bg_a6a4c615.jpg",
+    image: "/manus-storage/about-bg_608c8d14.jpg",
     category: "服务方案",
     date: "2026-03-10",
     author: "百慧农业",
@@ -143,7 +143,7 @@ export const blogPosts: BlogPost[] = [
 
 <h3>应急预案：保障供应</h3>
 <p>针对可能出现的设备故障、交通拥堵等突发情况，我们制定了完善的应急预案，配备了备用车辆和应急冷藏设备，确保在任何情况下都能按时、保质完成配送任务。</p>`,
-    image: "/manus-storage/cold-chain_4fe15d0a.jpg",
+    image: "/manus-storage/cold-chain_4c6aa301.jpg",
     category: "行业洞察",
     date: "2026-03-01",
     author: "百慧农业",

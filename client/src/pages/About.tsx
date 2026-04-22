@@ -56,7 +56,7 @@ export default function About() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-[#0D2818] overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img src="/manus-storage/about-bg_a6a4c615.jpg" alt="" className="w-full h-full object-cover" />
+          <img src="/manus-storage/about-bg_608c8d14.jpg" alt="" className="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0D2818]/80 to-[#0D2818]" />
         <div className="container relative">
@@ -86,7 +86,7 @@ export default function About() {
               </div>
             </div>
             <div className="relative">
-              <img src="/manus-storage/delivery-team_9c9595d6.jpg" alt="百慧农业团队" className="rounded-2xl shadow-2xl shadow-[#1B8A2E]/10 w-full h-[400px] lg:h-[480px] object-cover" />
+              <img src="/manus-storage/delivery-team_84f1e0b5.jpg" alt="百慧农业团队" className="rounded-2xl shadow-2xl shadow-[#1B8A2E]/10 w-full h-[400px] lg:h-[480px] object-cover" loading="lazy" decoding="async" />
               <div className="absolute -bottom-6 -left-4 lg:-left-8 bg-white rounded-2xl shadow-xl p-5 border border-[#1B8A2E]/10">
                 <div className="flex items-center gap-2 text-[#1B8A2E] mb-1">
                   <MapPin className="w-4 h-4" />
@@ -207,7 +207,7 @@ export default function About() {
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="order-2 lg:order-1">
-              <img src="/manus-storage/cold-chain_4fe15d0a.jpg" alt="冷链物流中心" className="rounded-2xl shadow-2xl shadow-[#1B8A2E]/10 w-full h-[400px] object-cover" />
+              <img src="/manus-storage/cold-chain_4c6aa301.jpg" alt="冷链物流中心" className="rounded-2xl shadow-2xl shadow-[#1B8A2E]/10 w-full h-[400px] object-cover" loading="lazy" decoding="async" />
             </div>
             <div className="order-1 lg:order-2">
               <SectionTitle subtitle="COLD CHAIN" title="冷链物流体系" align="left" />

@@ -51,7 +51,7 @@ export default function Blog() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-[#0D2818] overflow-hidden">
         <div className="absolute inset-0 opacity-15">
-          <img src="/manus-storage/blog-1_961dab7e.jpg" alt="" className="w-full h-full object-cover" />
+          <img src="/manus-storage/blog-1_840003fa.jpg" alt="" className="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0D2818]/80 to-[#0D2818]" />
         <div className="container relative">
@@ -74,7 +74,7 @@ export default function Blog() {
           <Link href={`/blog/${featured.slug}`}>
             <div className="group grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center cursor-pointer">
               <div className="rounded-2xl overflow-hidden">
-                <img src={featured.image} alt={featured.title} className="w-full h-[280px] lg:h-[360px] object-cover transition-transform duration-700 group-hover:scale-105" />
+                <img src={featured.image} alt={featured.title} className="w-full h-[280px] lg:h-[360px] object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
               </div>
               <div>
                 <div className="flex items-center gap-3 mb-4">
@@ -130,7 +130,7 @@ export default function Blog() {
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                     style={{ transitionDelay: `${i * 80}ms` }}>
                     <div className="aspect-[16/10] overflow-hidden">
-                      <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                      <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
                     </div>
                     <div className="p-6">
                       <div className="flex items-center gap-3 mb-3">

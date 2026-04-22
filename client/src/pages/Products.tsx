@@ -16,37 +16,37 @@ import { Check, ArrowRight } from "lucide-react";
 const categories = [
   {
     name: "新鲜蔬菜",
-    image: "/manus-storage/cat-vegetables_1ca6edc3.jpg",
+    image: "/manus-storage/cat-vegetables_ee0f7f21.jpg",
     desc: "每日凌晨从基地直采，确保蔬菜的新鲜度和营养价值。品种涵盖叶菜类、根茎类、瓜果类、豆类等上百个品种。",
     items: ["时令叶菜", "根茎蔬菜", "瓜果蔬菜", "豆类蔬菜", "菌菇类", "芽苗菜"]
   },
   {
     name: "时令水果",
-    image: "/manus-storage/cat-fruits_ded75179.jpg",
+    image: "/manus-storage/cat-fruits_d089dc7a.jpg",
     desc: "精选国内外优质水果产区的时令鲜果，从热带水果到温带水果，品种丰富，品质上乘。",
     items: ["苹果梨类", "柑橘类", "热带水果", "浆果类", "瓜类水果", "进口水果"]
   },
   {
     name: "肉禽蛋类",
-    image: "/manus-storage/cat-meat_56d75033.jpg",
+    image: "/manus-storage/cat-meat_ee1d42d5.jpg",
     desc: "与正规屠宰场和养殖基地合作，所有肉类产品均经过严格的检疫检验，确保安全放心。",
     items: ["猪肉系列", "牛肉系列", "羊肉系列", "鸡鸭禽类", "鲜蛋系列", "冷冻肉品"]
   },
   {
     name: "水产海鲜",
-    image: "/manus-storage/cat-seafood_380314d7.jpg",
+    image: "/manus-storage/cat-seafood_950e56ae.jpg",
     desc: "提供鲜活水产和优质冷冻海鲜，从淡水鱼虾到深海海鲜，满足不同客户的需求。",
     items: ["淡水鱼类", "海水鱼类", "虾蟹类", "贝壳类", "冷冻海鲜", "水产加工品"]
   },
   {
     name: "粮油干货",
-    image: "/manus-storage/cat-grain_0deb06a8.jpg",
+    image: "/manus-storage/cat-grain_4decd48a.jpg",
     desc: "精选优质品牌粮油产品，包括大米、面粉、食用油、干货等，品牌正品，品质保证。",
     items: ["大米系列", "面粉面条", "食用油", "杂粮豆类", "干货系列", "南北干货"]
   },
   {
     name: "调料副食",
-    image: "/manus-storage/cat-seasoning_08d7a383.jpg",
+    image: "/manus-storage/cat-seasoning_16e9ae19.jpg",
     desc: "提供各类烹饪调料和副食品，从基础调味品到特色酱料，一站式满足厨房所需。",
     items: ["酱油醋类", "料酒香油", "辣椒花椒", "复合调料", "酱料系列", "腌制食品"]
   },
@@ -80,7 +80,7 @@ export default function Products() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-[#0D2818] overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img src="/manus-storage/fresh-vegetables_69f31b1d.jpg" alt="" className="w-full h-full object-cover" />
+          <img src="/manus-storage/fresh-vegetables_e054a103.jpg" alt="" className="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0D2818]/80 to-[#0D2818]" />
         <div className="container relative">
@@ -110,7 +110,7 @@ export default function Products() {
                   className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <div className={`${isEven ? '' : 'lg:order-2'}`}>
                     <div className="relative rounded-2xl overflow-hidden group">
-                      <img src={cat.image} alt={cat.name} className="w-full h-[300px] lg:h-[380px] object-cover transition-transform duration-700 group-hover:scale-105" />
+                      <img src={cat.image} alt={cat.name} className="w-full h-[300px] lg:h-[380px] object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0D2818]/30 to-transparent" />
                     </div>
                   </div>

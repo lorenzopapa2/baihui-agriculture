@@ -55,7 +55,7 @@ export default function BlogPost() {
       {/* Hero */}
       <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 bg-[#0D2818] overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img src={post.image} alt="" className="w-full h-full object-cover" />
+          <img src={post.image} alt="" className="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0D2818]/80 to-[#0D2818]" />
         <div className="container relative max-w-4xl mx-auto">
@@ -81,7 +81,7 @@ export default function BlogPost() {
         <div className="container max-w-4xl mx-auto">
           {/* Featured image */}
           <div className="rounded-2xl overflow-hidden mb-12 -mt-12 relative z-10 shadow-2xl shadow-[#1B8A2E]/10">
-            <img src={post.image} alt={post.title} className="w-full h-[300px] lg:h-[450px] object-cover" />
+            <img src={post.image} alt={post.title} className="w-full h-[300px] lg:h-[450px] object-cover" loading="eager" decoding="async" />
           </div>
 
           {/* Article body */}
@@ -133,7 +133,7 @@ export default function BlogPost() {
               <Link key={rPost.slug} href={`/blog/${rPost.slug}`}>
                 <article className="group rounded-2xl overflow-hidden bg-white border border-gray-100 hover:shadow-xl hover:shadow-[#1B8A2E]/5 transition-all duration-500 hover:-translate-y-1">
                   <div className="aspect-[16/10] overflow-hidden">
-                    <img src={rPost.image} alt={rPost.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <img src={rPost.image} alt={rPost.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
                   </div>
                   <div className="p-5">
                     <span className="text-xs font-medium text-[#1B8A2E] bg-[#1B8A2E]/5 px-2 py-0.5 rounded-full" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>

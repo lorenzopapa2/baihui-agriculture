@@ -25,7 +25,7 @@ function HeroSection() {
   return (
     <section className="relative h-screen min-h-[700px] flex items-center overflow-hidden">
       <div className="absolute inset-0">
-        <img src="/manus-storage/hero-bg_42173f11.jpg" alt="百慧农业田间配送" className="w-full h-full object-cover" />
+        <img src="/manus-storage/hero-bg_8f361214.jpg" alt="百慧农业田间配送" className="w-full h-full object-cover" loading="eager" decoding="async" fetchPriority="high" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0D2818]/90 via-[#0D2818]/60 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0D2818]/40 via-transparent to-[#0D2818]/20" />
       </div>
@@ -122,7 +122,7 @@ function AboutPreview() {
         <div ref={ref} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-[#1B8A2E]/10">
-              <img src="/manus-storage/delivery-team_9c9595d6.jpg" alt="百慧农业配送团队" className="w-full h-[400px] lg:h-[500px] object-cover" />
+              <img src="/manus-storage/delivery-team_84f1e0b5.jpg" alt="百慧农业配送团队" className="w-full h-[400px] lg:h-[500px] object-cover" loading="lazy" decoding="async" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0D2818]/30 to-transparent" />
             </div>
             <div className="absolute -bottom-6 -right-4 lg:-right-8 bg-white rounded-2xl shadow-xl p-6 border border-[#1B8A2E]/10">
@@ -151,12 +151,12 @@ function AboutPreview() {
 /* ─── Products Preview ─── */
 function ProductsPreview() {
   const categories = [
-    { name: "新鲜蔬菜", image: "/manus-storage/cat-vegetables_1ca6edc3.jpg", desc: "当日采摘，新鲜直达" },
-    { name: "时令水果", image: "/manus-storage/cat-fruits_ded75179.jpg", desc: "精选优质，甜蜜可口" },
-    { name: "肉禽蛋类", image: "/manus-storage/cat-meat_56d75033.jpg", desc: "品质保障，安全放心" },
-    { name: "水产海鲜", image: "/manus-storage/cat-seafood_380314d7.jpg", desc: "鲜活直供，品质上乘" },
-    { name: "粮油干货", image: "/manus-storage/cat-grain_0deb06a8.jpg", desc: "优质粮油，品牌保证" },
-    { name: "调料副食", image: "/manus-storage/cat-seasoning_08d7a383.jpg", desc: "品类齐全，一站采购" },
+    { name: "新鲜蔬菜", image: "/manus-storage/cat-vegetables_ee0f7f21.jpg", desc: "当日采摘，新鲜直达" },
+    { name: "时令水果", image: "/manus-storage/cat-fruits_d089dc7a.jpg", desc: "精选优质，甜蜜可口" },
+    { name: "肉禽蛋类", image: "/manus-storage/cat-meat_ee1d42d5.jpg", desc: "品质保障，安全放心" },
+    { name: "水产海鲜", image: "/manus-storage/cat-seafood_950e56ae.jpg", desc: "鲜活直供，品质上乘" },
+    { name: "粮油干货", image: "/manus-storage/cat-grain_4decd48a.jpg", desc: "优质粮油，品牌保证" },
+    { name: "调料副食", image: "/manus-storage/cat-seasoning_16e9ae19.jpg", desc: "品类齐全，一站采购" },
   ];
 
   return (
@@ -172,7 +172,7 @@ function ProductsPreview() {
                   className={`group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                   style={{ transitionDelay: `${i * 80}ms` }}>
                   <div className="aspect-[4/3] overflow-hidden">
-                    <img src={cat.image} alt={cat.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                    <img src={cat.image} alt={cat.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async" />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0D2818]/80 via-[#0D2818]/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-6">
@@ -205,7 +205,7 @@ function StatsSection() {
   return (
     <section className="relative py-24 lg:py-32 overflow-hidden">
       <div className="absolute inset-0">
-        <img src="/manus-storage/fresh-vegetables_69f31b1d.jpg" alt="" className="w-full h-full object-cover" />
+        <img src="/manus-storage/fresh-vegetables_e054a103.jpg" alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
         <div className="absolute inset-0 bg-[#0D2818]/85" />
       </div>
       <div className="container relative" ref={ref}>
@@ -367,7 +367,7 @@ function BlogPreview() {
                   className={`group rounded-2xl overflow-hidden bg-white border border-gray-100 hover:shadow-xl hover:shadow-[#1B8A2E]/5 hover:border-[#1B8A2E]/10 transition-all duration-500 hover:-translate-y-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                   style={{ transitionDelay: `${i * 100}ms` }}>
                   <div className="aspect-[16/10] overflow-hidden">
-                    <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
                   </div>
                   <div className="p-6">
                     <div className="flex items-center gap-3 mb-3">
