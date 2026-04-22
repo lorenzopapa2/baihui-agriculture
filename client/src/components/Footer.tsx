@@ -15,9 +15,9 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
               <img
-                src="/manus-storage/2891_2169cd48.jpeg"
+                src="/manus-storage/logo-transparent_e744a865.png"
                 alt="百慧农业"
-                className="h-12 w-auto rounded-lg"
+                className="h-12 w-auto brightness-[10] contrast-[0.6] saturate-[0.5]"
               />
               <div>
                 <div className="text-lg font-bold text-white" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>百慧农业</div>

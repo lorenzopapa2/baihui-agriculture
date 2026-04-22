@@ -53,9 +53,9 @@ export default function Navbar() {
       <div className="container flex items-center justify-between h-16 lg:h-18">
         <Link href="/" className="flex items-center gap-3 group">
           <img
-            src="/manus-storage/2891_2169cd48.jpeg"
+            src="/manus-storage/logo-transparent_e744a865.png"
             alt="百慧农业"
-            className="h-10 lg:h-12 w-auto transition-all duration-300 rounded-lg"
+            className="h-10 lg:h-12 w-auto transition-all duration-300"
           />
           <div className={`hidden sm:block transition-colors duration-500 ${textColor}`}>
             <div className="text-base font-bold leading-tight" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>百慧农业</div>
