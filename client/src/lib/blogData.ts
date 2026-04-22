@@ -156,5 +156,11 @@ export function getBlogPost(slug: string): BlogPost | undefined {
 }
 
 export function getRelatedPosts(currentSlug: string, count: number = 3): BlogPost[] {
-  return blogPosts.filter(post => post.slug !== currentSlug).slice(0, count);
+  const current = getBlogPost(currentSlug);
+  const others = blogPosts.filter(post => post.slug !== currentSlug);
+  if (!current) return others.slice(0, count);
+  // Prioritize same category
+  const sameCategory = others.filter(p => p.category === current.category);
+  const diffCategory = others.filter(p => p.category !== current.category);
+  return [...sameCategory, ...diffCategory].slice(0, count);
 }

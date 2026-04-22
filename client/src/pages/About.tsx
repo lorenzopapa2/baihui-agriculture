@@ -1,12 +1,16 @@
 /*
  * Design: 东方当代美学 - 鲜活韵律
- * About: 公司介绍、企业文化、团队展示
+ * About: 公司介绍、发展历程时间线、企业文化、冷链体系
+ * 优化: 面包屑导航、SEO Meta、Schema.org、发展历程
  */
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FloatingContact from "@/components/FloatingContact";
 import SectionTitle from "@/components/SectionTitle";
+import PageBreadcrumb from "@/components/PageBreadcrumb";
+import SEOHead, { getOrganizationSchema } from "@/components/SEOHead";
 import { useScrollAnimation, useCountUp } from "@/hooks/useScrollAnimation";
-import { Target, Heart, Award, Users, Eye, Lightbulb } from "lucide-react";
+import { Target, Heart, Award, Users, Eye, Lightbulb, MapPin, Calendar } from "lucide-react";
 
 export default function About() {
   const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation();
@@ -30,8 +34,23 @@ export default function About() {
     { icon: Users, title: "专业服务团队", desc: "拥有经验丰富的采购、品控、物流、客服团队，为客户提供全方位的专业服务。" },
   ];
 
+  const timeline = [
+    { year: "2015", title: "公司成立", desc: "重庆百慧农业发展有限公司在重庆正式注册成立，开始农副产品配送业务。" },
+    { year: "2017", title: "冷链升级", desc: "投资建设现代化冷库和冷链物流体系，引进专业冷链运输车辆，实现全程温控配送。" },
+    { year: "2019", title: "规模扩张", desc: "服务客户突破200家，配送网络覆盖重庆主城九区，团队规模扩大至60余人。" },
+    { year: "2021", title: "智慧升级", desc: "引入智能供应链管理系统，实现大数据采购预测、智能分拣和路线优化。" },
+    { year: "2023", title: "品质认证", desc: "通过ISO食品安全管理体系认证，建立完善的食品安全追溯体系。" },
+    { year: "2025", title: "行业领先", desc: "服务客户超500家，成为重庆地区领先的农副产品供应链服务商。" },
+  ];
+
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="关于百慧农业 - 重庆专业生鲜配送企业"
+        description="重庆百慧农业发展有限公司，扎根山城重庆，专注农副产品生鲜配送。拥有现代化冷链物流体系、专业服务团队，服务客户超500家。"
+        keywords="百慧农业,重庆生鲜配送,农副产品配送,企业简介,冷链物流"
+        schema={getOrganizationSchema()}
+      />
       <Navbar />
 
       {/* Hero */}
@@ -41,6 +60,7 @@ export default function About() {
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0D2818]/80 to-[#0D2818]" />
         <div className="container relative">
+          <PageBreadcrumb items={[{ label: "关于我们" }]} light />
           <div className="max-w-2xl">
             <span className="text-[#4ADE80] text-xs font-semibold tracking-[0.2em] uppercase mb-4 block" style={{ fontFamily: "'DM Sans', sans-serif" }}>ABOUT BAIHUI</span>
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6" style={{ fontFamily: "'Playfair Display', 'Noto Serif SC', serif" }}>
@@ -66,11 +86,14 @@ export default function About() {
               </div>
             </div>
             <div className="relative">
-              <img
-                src="/manus-storage/delivery-team_9c9595d6.jpg"
-                alt="百慧农业团队"
-                className="rounded-2xl shadow-2xl shadow-[#1B8A2E]/10 w-full h-[400px] lg:h-[480px] object-cover"
-              />
+              <img src="/manus-storage/delivery-team_9c9595d6.jpg" alt="百慧农业团队" className="rounded-2xl shadow-2xl shadow-[#1B8A2E]/10 w-full h-[400px] lg:h-[480px] object-cover" />
+              <div className="absolute -bottom-6 -left-4 lg:-left-8 bg-white rounded-2xl shadow-xl p-5 border border-[#1B8A2E]/10">
+                <div className="flex items-center gap-2 text-[#1B8A2E] mb-1">
+                  <MapPin className="w-4 h-4" />
+                  <span className="text-sm font-bold" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>重庆市渝北区</span>
+                </div>
+                <div className="text-xs text-[#9CA3AF]" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>总部所在地</div>
+              </div>
             </div>
           </div>
         </div>
@@ -84,9 +107,7 @@ export default function About() {
               const count = useCountUp(stat.end, 2000, statsVisible);
               return (
                 <div key={stat.label} className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold text-[#1B8A2E] mb-1" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                    {count}{stat.suffix}
-                  </div>
+                  <div className="text-3xl lg:text-4xl font-bold text-[#1B8A2E] mb-1" style={{ fontFamily: "'Montserrat', sans-serif" }}>{count}{stat.suffix}</div>
                   <div className="text-sm text-[#6B7280]" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>{stat.label}</div>
                 </div>
               );
@@ -95,20 +116,80 @@ export default function About() {
         </div>
       </section>
 
-      {/* Values */}
+      {/* Development Timeline (NEW) */}
       <section className="py-20 lg:py-28 bg-white">
+        <div className="container">
+          <SectionTitle subtitle="OUR JOURNEY" title="发展历程" description="十年深耕，砥砺前行" />
+          <div className="relative max-w-4xl mx-auto">
+            {/* Center line */}
+            <div className="absolute left-4 lg:left-1/2 top-0 bottom-0 w-px bg-[#1B8A2E]/15 lg:-translate-x-px" />
+
+            {timeline.map((item, i) => {
+              const { ref, isVisible } = useScrollAnimation();
+              const isLeft = i % 2 === 0;
+              return (
+                <div key={item.year} ref={ref}
+                  className={`relative flex items-start mb-12 last:mb-0 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                  style={{ transitionDelay: `${i * 100}ms` }}>
+
+                  {/* Mobile layout: always left-aligned */}
+                  <div className="lg:hidden flex items-start gap-6 w-full">
+                    <div className="relative z-10 shrink-0">
+                      <div className="w-8 h-8 rounded-full bg-[#1B8A2E] flex items-center justify-center shadow-lg shadow-[#1B8A2E]/20">
+                        <Calendar className="w-4 h-4 text-white" />
+                      </div>
+                    </div>
+                    <div className="flex-1 p-5 rounded-2xl bg-[#FAFAF5] border border-[#1B8A2E]/5">
+                      <span className="text-xs font-bold text-[#1B8A2E] tracking-wider" style={{ fontFamily: "'Montserrat', sans-serif" }}>{item.year}</span>
+                      <h3 className="text-base font-bold text-[#1A1A1A] mt-1 mb-2" style={{ fontFamily: "'Noto Serif SC', serif" }}>{item.title}</h3>
+                      <p className="text-sm text-[#6B7280] leading-relaxed" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>{item.desc}</p>
+                    </div>
+                  </div>
+
+                  {/* Desktop layout: alternating */}
+                  <div className="hidden lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-8 w-full items-start">
+                    <div className={`${isLeft ? 'text-right' : ''}`}>
+                      {isLeft && (
+                        <div className="p-6 rounded-2xl bg-[#FAFAF5] border border-[#1B8A2E]/5 hover:shadow-md hover:shadow-[#1B8A2E]/5 transition-all duration-300">
+                          <span className="text-xs font-bold text-[#1B8A2E] tracking-wider" style={{ fontFamily: "'Montserrat', sans-serif" }}>{item.year}</span>
+                          <h3 className="text-lg font-bold text-[#1A1A1A] mt-1 mb-2" style={{ fontFamily: "'Noto Serif SC', serif" }}>{item.title}</h3>
+                          <p className="text-sm text-[#6B7280] leading-relaxed" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>{item.desc}</p>
+                        </div>
+                      )}
+                    </div>
+                    <div className="relative z-10">
+                      <div className="w-10 h-10 rounded-full bg-[#1B8A2E] flex items-center justify-center shadow-lg shadow-[#1B8A2E]/20">
+                        <Calendar className="w-5 h-5 text-white" />
+                      </div>
+                    </div>
+                    <div>
+                      {!isLeft && (
+                        <div className="p-6 rounded-2xl bg-[#FAFAF5] border border-[#1B8A2E]/5 hover:shadow-md hover:shadow-[#1B8A2E]/5 transition-all duration-300">
+                          <span className="text-xs font-bold text-[#1B8A2E] tracking-wider" style={{ fontFamily: "'Montserrat', sans-serif" }}>{item.year}</span>
+                          <h3 className="text-lg font-bold text-[#1A1A1A] mt-1 mb-2" style={{ fontFamily: "'Noto Serif SC', serif" }}>{item.title}</h3>
+                          <p className="text-sm text-[#6B7280] leading-relaxed" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>{item.desc}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Values */}
+      <section className="py-20 lg:py-28 bg-[#FAFAF5]">
         <div className="container">
           <SectionTitle subtitle="OUR VALUES" title="企业文化" description="以使命驱动发展，以价值观引领行动" />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((val, i) => {
               const { ref, isVisible } = useScrollAnimation();
               return (
-                <div
-                  key={val.title}
-                  ref={ref}
-                  className={`p-8 rounded-2xl bg-[#FAFAF5] border border-[#1B8A2E]/5 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                  style={{ transitionDelay: `${i * 100}ms` }}
-                >
+                <div key={val.title} ref={ref}
+                  className={`p-8 rounded-2xl bg-white border border-[#1B8A2E]/5 text-center transition-all duration-500 hover:shadow-lg hover:shadow-[#1B8A2E]/5 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                  style={{ transitionDelay: `${i * 100}ms` }}>
                   <div className="w-14 h-14 rounded-xl bg-[#1B8A2E]/8 flex items-center justify-center mx-auto mb-5">
                     <val.icon className="w-7 h-7 text-[#1B8A2E]" />
                   </div>
@@ -122,15 +203,11 @@ export default function About() {
       </section>
 
       {/* Cold chain */}
-      <section className="py-20 lg:py-28 bg-[#FAFAF5]">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="order-2 lg:order-1">
-              <img
-                src="/manus-storage/cold-chain_4fe15d0a.jpg"
-                alt="冷链物流中心"
-                className="rounded-2xl shadow-2xl shadow-[#1B8A2E]/10 w-full h-[400px] object-cover"
-              />
+              <img src="/manus-storage/cold-chain_4fe15d0a.jpg" alt="冷链物流中心" className="rounded-2xl shadow-2xl shadow-[#1B8A2E]/10 w-full h-[400px] object-cover" />
             </div>
             <div className="order-1 lg:order-2">
               <SectionTitle subtitle="COLD CHAIN" title="冷链物流体系" align="left" />
@@ -141,12 +218,9 @@ export default function About() {
               {advantages.map((adv, i) => {
                 const { ref, isVisible } = useScrollAnimation();
                 return (
-                  <div
-                    key={adv.title}
-                    ref={ref}
+                  <div key={adv.title} ref={ref}
                     className={`flex gap-4 mt-6 transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-                    style={{ transitionDelay: `${i * 100}ms` }}
-                  >
+                    style={{ transitionDelay: `${i * 100}ms` }}>
                     <div className="w-10 h-10 rounded-lg bg-[#1B8A2E]/8 flex items-center justify-center shrink-0 mt-1">
                       <adv.icon className="w-5 h-5 text-[#1B8A2E]" />
                     </div>
@@ -163,6 +237,7 @@ export default function About() {
       </section>
 
       <Footer />
+      <FloatingContact />
     </div>
   );
 }

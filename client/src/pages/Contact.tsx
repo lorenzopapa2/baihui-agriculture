@@ -1,13 +1,17 @@
 /*
  * Design: 东方当代美学 - 鲜活韵律
- * Contact: 联系方式、留言表单
+ * Contact: 联系方式、留言表单、地图指引
+ * 优化: 面包屑导航、SEO Meta、LocalBusiness Schema
  */
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FloatingContact from "@/components/FloatingContact";
 import SectionTitle from "@/components/SectionTitle";
+import PageBreadcrumb from "@/components/PageBreadcrumb";
+import SEOHead, { getLocalBusinessSchema } from "@/components/SEOHead";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { Phone, MapPin, Mail, Clock, MessageSquare, Send } from "lucide-react";
+import { Phone, MapPin, Mail, Clock, MessageSquare, Send, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
 
 export default function Contact() {
@@ -17,13 +21,16 @@ export default function Contact() {
     company: "",
     message: "",
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast.success("感谢您的留言！我们会尽快与您联系。", {
       description: "工作人员将在24小时内回复您的咨询。",
     });
+    setSubmitted(true);
     setFormData({ name: "", phone: "", company: "", message: "" });
+    setTimeout(() => setSubmitted(false), 3000);
   };
 
   const contactInfo = [
@@ -35,12 +42,19 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="联系我们 - 百慧农业 | 服务热线 13983082571"
+        description="联系重庆百慧农业发展有限公司，获取专业的食材配送服务。服务热线：13983082571，地址：重庆市渝北区。欢迎来访考察洽谈合作。"
+        keywords="百慧农业联系方式,重庆生鲜配送电话,食材配送咨询,百慧农业地址"
+        schema={getLocalBusinessSchema()}
+      />
       <Navbar />
 
       {/* Hero */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-[#0D2818] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0D2818] to-[#1B4D2E]" />
         <div className="container relative">
+          <PageBreadcrumb items={[{ label: "联系我们" }]} light />
           <div className="max-w-2xl">
             <span className="text-[#4ADE80] text-xs font-semibold tracking-[0.2em] uppercase mb-4 block" style={{ fontFamily: "'DM Sans', sans-serif" }}>CONTACT US</span>
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6" style={{ fontFamily: "'Playfair Display', 'Noto Serif SC', serif" }}>
@@ -60,13 +74,10 @@ export default function Contact() {
             {contactInfo.map((info, i) => {
               const { ref, isVisible } = useScrollAnimation();
               return (
-                <div
-                  key={info.title}
-                  ref={ref}
+                <div key={info.title} ref={ref}
                   className={`p-6 rounded-2xl bg-[#FAFAF5] border border-[#1B8A2E]/5 text-center hover:shadow-lg hover:shadow-[#1B8A2E]/5 transition-all duration-500 hover:-translate-y-1
                     ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                  style={{ transitionDelay: `${i * 100}ms` }}
-                >
+                  style={{ transitionDelay: `${i * 100}ms` }}>
                   <div className="w-12 h-12 rounded-xl bg-[#1B8A2E]/8 flex items-center justify-center mx-auto mb-4">
                     <info.icon className="w-6 h-6 text-[#1B8A2E]" />
                   </div>
@@ -119,6 +130,23 @@ export default function Contact() {
                   </div>
                 </div>
               </div>
+
+              {/* Quick FAQ */}
+              <div className="mt-10 p-6 rounded-2xl bg-white border border-[#1B8A2E]/5">
+                <h4 className="text-base font-bold text-[#1A1A1A] mb-4" style={{ fontFamily: "'Noto Serif SC', serif" }}>常见问题</h4>
+                <div className="space-y-3">
+                  {[
+                    { q: "配送范围覆盖哪些区域？", a: "目前覆盖重庆主城九区及周边区县。" },
+                    { q: "最低起配量是多少？", a: "根据客户类型灵活调整，详询客户经理。" },
+                    { q: "如何保障食材品质？", a: "全程冷链+多层检测+可追溯体系。" },
+                  ].map((faq, i) => (
+                    <div key={i} className="text-sm">
+                      <div className="font-medium text-[#1A1A1A] mb-0.5" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>{faq.q}</div>
+                      <div className="text-[#6B7280]" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>{faq.a}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Right: form */}
@@ -133,68 +161,55 @@ export default function Contact() {
                     <label className="block text-sm font-medium text-[#4B5563] mb-2" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>
                       您的姓名 <span className="text-red-500">*</span>
                     </label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.name}
+                    <input type="text" required value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#1B8A2E] focus:ring-2 focus:ring-[#1B8A2E]/10 outline-none transition-all text-sm"
-                      placeholder="请输入您的姓名"
-                      style={{ fontFamily: "'Noto Sans SC', sans-serif" }}
-                    />
+                      placeholder="请输入您的姓名" style={{ fontFamily: "'Noto Sans SC', sans-serif" }} />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-[#4B5563] mb-2" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>
                       联系电话 <span className="text-red-500">*</span>
                     </label>
-                    <input
-                      type="tel"
-                      required
-                      value={formData.phone}
+                    <input type="tel" required value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#1B8A2E] focus:ring-2 focus:ring-[#1B8A2E]/10 outline-none transition-all text-sm"
-                      placeholder="请输入您的联系电话"
-                      style={{ fontFamily: "'Noto Sans SC', sans-serif" }}
-                    />
+                      placeholder="请输入您的联系电话" style={{ fontFamily: "'Noto Sans SC', sans-serif" }} />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-[#4B5563] mb-2" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>
                       公司/单位名称
                     </label>
-                    <input
-                      type="text"
-                      value={formData.company}
+                    <input type="text" value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#1B8A2E] focus:ring-2 focus:ring-[#1B8A2E]/10 outline-none transition-all text-sm"
-                      placeholder="请输入公司或单位名称"
-                      style={{ fontFamily: "'Noto Sans SC', sans-serif" }}
-                    />
+                      placeholder="请输入公司或单位名称" style={{ fontFamily: "'Noto Sans SC', sans-serif" }} />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-[#4B5563] mb-2" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>
                       咨询内容 <span className="text-red-500">*</span>
                     </label>
-                    <textarea
-                      required
-                      rows={4}
-                      value={formData.message}
+                    <textarea required rows={4} value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#1B8A2E] focus:ring-2 focus:ring-[#1B8A2E]/10 outline-none transition-all text-sm resize-none"
                       placeholder="请描述您的需求，如需要配送的食材品类、数量、配送地址等"
-                      style={{ fontFamily: "'Noto Sans SC', sans-serif" }}
-                    />
+                      style={{ fontFamily: "'Noto Sans SC', sans-serif" }} />
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full flex items-center justify-center gap-2 px-8 py-3.5 bg-[#1B8A2E] text-white font-semibold rounded-lg hover:bg-[#0D4F1C] transition-all duration-300 shadow-lg shadow-[#1B8A2E]/20"
-                    style={{ fontFamily: "'Noto Sans SC', sans-serif" }}
-                  >
-                    <Send className="w-4 h-4" />
-                    提交咨询
+                  <button type="submit" disabled={submitted}
+                    className={`w-full flex items-center justify-center gap-2 px-8 py-3.5 font-semibold rounded-lg transition-all duration-300 shadow-lg ${
+                      submitted
+                        ? 'bg-[#4ADE80] text-white shadow-[#4ADE80]/20'
+                        : 'bg-[#1B8A2E] text-white hover:bg-[#0D4F1C] shadow-[#1B8A2E]/20'
+                    }`}
+                    style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>
+                    {submitted ? (
+                      <><CheckCircle className="w-4 h-4" /> 已提交</>
+                    ) : (
+                      <><Send className="w-4 h-4" /> 提交咨询</>
+                    )}
                   </button>
                 </div>
               </form>
@@ -204,6 +219,7 @@ export default function Contact() {
       </section>
 
       <Footer />
+      <FloatingContact />
     </div>
   );
 }

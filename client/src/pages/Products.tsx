@@ -1,10 +1,14 @@
 /*
  * Design: 东方当代美学 - 鲜活韵律
- * Products: 产品分类展示，瀑布流卡片
+ * Products: 产品分类展示，Z字型布局
+ * 优化: 面包屑导航、SEO Meta、浮动咨询
  */
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FloatingContact from "@/components/FloatingContact";
 import SectionTitle from "@/components/SectionTitle";
+import PageBreadcrumb from "@/components/PageBreadcrumb";
+import SEOHead from "@/components/SEOHead";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Link } from "wouter";
 import { Check, ArrowRight } from "lucide-react";
@@ -49,8 +53,28 @@ const categories = [
 ];
 
 export default function Products() {
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "百慧农业产品中心",
+    "description": "六大品类，数千种食材，一站式食材采购解决方案",
+    "numberOfItems": categories.length,
+    "itemListElement": categories.map((cat, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": cat.name,
+      "description": cat.desc
+    }))
+  };
+
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="产品中心 - 百慧农业 | 蔬菜水果肉禽蛋水产粮油全品类"
+        description="百慧农业提供新鲜蔬菜、时令水果、肉禽蛋类、水产海鲜、粮油干货、调料副食六大品类数千种食材，一站式满足您的食材采购需求。"
+        keywords="蔬菜配送,水果配送,肉类配送,海鲜配送,粮油配送,重庆食材批发,百慧农业产品"
+        schema={productSchema}
+      />
       <Navbar />
 
       {/* Hero */}
@@ -60,6 +84,7 @@ export default function Products() {
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0D2818]/80 to-[#0D2818]" />
         <div className="container relative">
+          <PageBreadcrumb items={[{ label: "产品中心" }]} light />
           <div className="max-w-2xl">
             <span className="text-[#4ADE80] text-xs font-semibold tracking-[0.2em] uppercase mb-4 block" style={{ fontFamily: "'DM Sans', sans-serif" }}>OUR PRODUCTS</span>
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6" style={{ fontFamily: "'Playfair Display', 'Noto Serif SC', serif" }}>
@@ -75,29 +100,17 @@ export default function Products() {
       {/* Categories */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="container">
-          <SectionTitle
-            subtitle="PRODUCT CATEGORIES"
-            title="全品类食材供应"
-            description="从田间到餐桌，我们精选每一份食材，只为给您最好的品质"
-          />
-
+          <SectionTitle subtitle="PRODUCT CATEGORIES" title="全品类食材供应" description="从田间到餐桌，我们精选每一份食材，只为给您最好的品质" />
           <div className="space-y-16 lg:space-y-24">
             {categories.map((cat, i) => {
               const { ref, isVisible } = useScrollAnimation();
               const isEven = i % 2 === 0;
               return (
-                <div
-                  key={cat.name}
-                  ref={ref}
-                  className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                >
+                <div key={cat.name} ref={ref}
+                  className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <div className={`${isEven ? '' : 'lg:order-2'}`}>
                     <div className="relative rounded-2xl overflow-hidden group">
-                      <img
-                        src={cat.image}
-                        alt={cat.name}
-                        className="w-full h-[300px] lg:h-[380px] object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
+                      <img src={cat.image} alt={cat.name} className="w-full h-[300px] lg:h-[380px] object-cover transition-transform duration-700 group-hover:scale-105" />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0D2818]/30 to-transparent" />
                     </div>
                   </div>
@@ -105,12 +118,8 @@ export default function Products() {
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1B8A2E]/5 mb-4">
                       <span className="text-xs font-bold text-[#1B8A2E]" style={{ fontFamily: "'Montserrat', sans-serif" }}>0{i + 1}</span>
                     </div>
-                    <h3 className="text-2xl lg:text-3xl font-bold text-[#1A1A1A] mb-4" style={{ fontFamily: "'Noto Serif SC', serif" }}>
-                      {cat.name}
-                    </h3>
-                    <p className="text-[#6B7280] leading-relaxed mb-6" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>
-                      {cat.desc}
-                    </p>
+                    <h3 className="text-2xl lg:text-3xl font-bold text-[#1A1A1A] mb-4" style={{ fontFamily: "'Noto Serif SC', serif" }}>{cat.name}</h3>
+                    <p className="text-[#6B7280] leading-relaxed mb-6" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>{cat.desc}</p>
                     <div className="grid grid-cols-2 gap-3">
                       {cat.items.map((item) => (
                         <div key={item} className="flex items-center gap-2">
@@ -150,6 +159,7 @@ export default function Products() {
       </section>
 
       <Footer />
+      <FloatingContact />
     </div>
   );
 }

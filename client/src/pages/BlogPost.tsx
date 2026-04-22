@@ -1,12 +1,17 @@
 /*
  * Design: 东方当代美学 - 鲜活韵律
- * BlogPost: 博客文章详情页，SEO友好的文章结构
+ * BlogPost: 博客文章详情页
+ * 优化: 面包屑导航、Article Schema.org、SEO Meta
  */
 import { useParams, Link } from "wouter";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FloatingContact from "@/components/FloatingContact";
+import PageBreadcrumb from "@/components/PageBreadcrumb";
+import SEOHead, { getArticleSchema } from "@/components/SEOHead";
 import { getBlogPost, getRelatedPosts } from "@/lib/blogData";
-import { ArrowLeft, Clock, User, Calendar, ArrowRight } from "lucide-react";
+import { ArrowLeft, Clock, User, Calendar, ArrowRight, Share2 } from "lucide-react";
+import { toast } from "sonner";
 
 export default function BlogPost() {
   const params = useParams<{ slug: string }>();
@@ -28,8 +33,23 @@ export default function BlogPost() {
     );
   }
 
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({ title: post.title, url: window.location.href });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      toast.success("链接已复制到剪贴板");
+    }
+  };
+
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title={`${post.title} - 百慧农业`}
+        description={post.excerpt}
+        keywords={`${post.category},百慧农业,生鲜配送,重庆农业`}
+        schema={getArticleSchema(post)}
+      />
       <Navbar />
 
       {/* Hero */}
@@ -39,11 +59,7 @@ export default function BlogPost() {
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0D2818]/80 to-[#0D2818]" />
         <div className="container relative max-w-4xl mx-auto">
-          <Link href="/blog">
-            <span className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm mb-8 transition-colors" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>
-              <ArrowLeft className="w-4 h-4" /> 返回资讯列表
-            </span>
-          </Link>
+          <PageBreadcrumb items={[{ label: "新闻资讯", href: "/blog" }, { label: post.title }]} light />
           <div className="flex items-center gap-3 mb-4">
             <span className="text-xs font-medium text-[#4ADE80] bg-[#4ADE80]/10 px-3 py-1 rounded-full" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>
               {post.category}
@@ -81,13 +97,27 @@ export default function BlogPost() {
           />
 
           {/* Share & tags */}
-          <div className="mt-12 pt-8 border-t border-gray-100">
+          <div className="mt-12 pt-8 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <span className="text-sm text-[#6B7280]" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>标签：</span>
               <span className="text-xs bg-[#1B8A2E]/5 text-[#1B8A2E] px-3 py-1 rounded-full">{post.category}</span>
               <span className="text-xs bg-gray-100 text-[#6B7280] px-3 py-1 rounded-full">生鲜配送</span>
               <span className="text-xs bg-gray-100 text-[#6B7280] px-3 py-1 rounded-full">百慧农业</span>
             </div>
+            <button onClick={handleShare}
+              className="flex items-center gap-2 text-sm text-[#6B7280] hover:text-[#1B8A2E] transition-colors"
+              style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>
+              <Share2 className="w-4 h-4" /> 分享文章
+            </button>
+          </div>
+
+          {/* Back to list */}
+          <div className="mt-8">
+            <Link href="/blog">
+              <span className="inline-flex items-center gap-2 text-[#1B8A2E] font-medium hover:gap-3 transition-all" style={{ fontFamily: "'Noto Sans SC', sans-serif" }}>
+                <ArrowLeft className="w-4 h-4" /> 返回资讯列表
+              </span>
+            </Link>
           </div>
         </div>
       </section>
@@ -112,6 +142,9 @@ export default function BlogPost() {
                     <h3 className="text-base font-bold text-[#1A1A1A] mt-2 line-clamp-2 group-hover:text-[#1B8A2E] transition-colors" style={{ fontFamily: "'Noto Serif SC', serif" }}>
                       {rPost.title}
                     </h3>
+                    <div className="mt-3 flex items-center gap-2 text-sm text-[#1B8A2E] font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                      阅读全文 <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
                   </div>
                 </article>
               </Link>
@@ -121,6 +154,7 @@ export default function BlogPost() {
       </section>
 
       <Footer />
+      <FloatingContact />
     </div>
   );
 }
